@@ -14,6 +14,14 @@ const messages = [
   },
 ];
 
+messages.forEach((message) => {
+  message.formattedDate = message.added.toLocaleString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+  });
+});
+
 router.get("/", function (req, res, next) {
   res.render("index", { title: "Message Board", messages: messages });
 });
