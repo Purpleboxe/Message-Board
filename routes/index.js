@@ -26,4 +26,24 @@ router.get("/", function (req, res, next) {
   res.render("index", { title: "Message Board", messages: messages });
 });
 
+router.get("/new", function (req, res, next) {
+  res.render("form", { title: "New Message" });
+});
+
+router.post("/new", function (req, res, next) {
+  const { user, text } = req.body;
+  const newMessage = {
+    text: text,
+    user: user,
+    added: new Date(),
+    formattedDate: new Date().toLocaleString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    }),
+  };
+  messages.push(newMessage);
+  res.redirect("/");
+});
+
 module.exports = router;

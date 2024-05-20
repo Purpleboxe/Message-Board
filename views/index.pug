@@ -1,14 +1,15 @@
 extends layout
 
 block content
+  h1= title
   .message-board
-    h1 Message Board
     .messages#messagesDiv
       each message in messages
-        .message 
+        .message
           .message-header
             strong= message.user
             span.message-date= message.formattedDate
-          p= message.text
-
+          p.message-text= message.text
+  a(href="/new")
+      button.button New Message 
   script(src="./javascripts/scroll.js")
