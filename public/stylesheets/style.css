@@ -84,7 +84,7 @@ body {
   justify-content: center;
   background-color: #0d1b2a;
   border: none;
-  border-radius: 10px;
+  border-radius: 5px;
   color: white;
   padding: 15px 25px;
   font-weight: bold;
@@ -124,4 +124,20 @@ textarea {
 
 ::placeholder {
   color: whitesmoke;
+}
+
+@media only screen and (max-width: 1200px) {
+  .message-board {
+    width: 80vw;
+  }
+
+  .button {
+    border-radius: 5px;
+    padding: 15px 25px;
+    font-size: 0.8rem;
+  }
+
+  .new-message-form {
+    width: 80vw;
+  }
 }
