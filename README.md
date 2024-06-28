@@ -1,7 +1,5 @@
 # Message-Board
 
-[Live Site](https://purpleboxe-message-board.fly.dev/)
-
 ## Overview
 
 A simple message board that allows users to post and view messages.
