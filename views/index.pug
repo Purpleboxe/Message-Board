@@ -7,9 +7,8 @@ block content
       each message in messages
         .message
           .message-header
-            strong= message.user
+            strong= message.username
             span.message-date= message.formattedDate
           p.message-text= message.text
   a(href="/new")
       button.button New Message 
-  script(src="./javascripts/scroll.js")

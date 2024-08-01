@@ -1,21 +1,9 @@
 var express = require("express");
 var router = express.Router();
+const { getMessages, addMessage } = require("../db/db");
 
-const messages = [
-  {
-    text: "Hi there!",
-    user: "Amando",
-    added: new Date(),
-  },
-  {
-    text: "Hello World!",
-    user: "Charles",
-    added: new Date(),
-  },
-];
-
-messages.forEach((message) => {
-  message.formattedDate = message.added.toLocaleString("en-US", {
+const formatDate = (date) => {
+  return new Date(date).toLocaleString("en-US", {
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
@@ -23,33 +11,32 @@ messages.forEach((message) => {
     minute: "2-digit",
     hour12: true,
   });
-});
+};
 
-router.get("/", function (req, res, next) {
-  res.render("index", { title: "Message Board", messages: messages });
+router.get("/", async function (req, res, next) {
+  try {
+    const messages = await getMessages();
+    messages.forEach((message) => {
+      message.formattedDate = formatDate(message.added);
+    });
+    res.render("index", { title: "Message Board", messages });
+  } catch (err) {
+    next(err);
+  }
 });
 
 router.get("/new", function (req, res, next) {
   res.render("form", { title: "New Message" });
 });
 
-router.post("/new", function (req, res, next) {
-  const { user, text } = req.body;
-  const newMessage = {
-    text: text,
-    user: user,
-    added: new Date(),
-    formattedDate: new Date().toLocaleString("en-US", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true,
-    }),
-  };
-  messages.push(newMessage);
-  res.redirect("/");
+router.post("/new", async function (req, res, next) {
+  try {
+    const { username, text } = req.body;
+    await addMessage(text, username);
+    res.redirect("/");
+  } catch (err) {
+    next(err);
+  }
 });
 
 module.exports = router;
