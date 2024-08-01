@@ -29,13 +29,19 @@ To run this project locally:
    npm install
    ```
 
-3. Start the server:
+3. Set up enviroment variables by creating a `.env` file in the root of the directory and add the following:
+
+   ```env
+   DATABASE_URL=your_postgresql_database
+   ```
+
+4. Start the server:
 
    ```bash
    npm run start
    ```
 
-4. Open your browser and navigate to `http://localhost:3000`
+5. Open your browser and navigate to `http://localhost:3000`
 
 ## What I Learned
 
