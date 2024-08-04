@@ -35,13 +35,19 @@ To run this project locally:
    DATABASE_URL=your_postgresql_database
    ```
 
-4. Start the server:
+4. Set up the database by adding tables using the following:
+
+   ```bash
+   node db/setupDB.js
+   ```
+
+5. Start the server:
 
    ```bash
    npm run start
    ```
 
-5. Open your browser and navigate to `http://localhost:3000`
+6. Open your browser and navigate to `http://localhost:3000`
 
 ## What I Learned
 
