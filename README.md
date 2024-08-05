@@ -11,6 +11,7 @@ A simple message board that allows users to post and view messages.
 - Pug
 - JavaScript
 - CSS
+- SQL
 
 ## Installation
 
